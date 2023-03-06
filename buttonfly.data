@@ -1,1 +1,36 @@
-../sgi-demos/buttonfly/web/buttonfly.data
+	.backcolor. .1 .1 .1
+	.color. .64 .73 1.0
+	.highcolor. .86 .92 1.0
+Silicon Graphics
+	.menu. .menu_demos
+	.popup. Buttonfly %t
+	.popup. Information
+	/usr/demos/buttonfly.info
+	.popup. Manual
+	wsh -f Screen-Bold.15 -c /usr/demos/bin/manwsh 6 buttonfly
+	.color. .9 .5 .9
+	.highcolor. 1.0 .7 1.0
+Jello
+	jello/web/jello_full.html
+	.color. .9 .5 .9
+	.highcolor. 1.0 .7 1.0
+
+Insect
+	insect/web/insect_full.html
+	.color. .9 .5 .9
+	.highcolor. 1.0 .7 1.0
+
+Ideas
+	ideas/web/ideas_full.html
+	.color. .9 .5 .9
+	.highcolor. 1.0 .7 1.0
+
+Logo
+	logo/web/logo_full.html
+	.color. .9 .5 .9
+	.highcolor. 1.0 .7 1.0
+
+Bounce
+	bounce/web/bounce_full.html
+	.color. .9 .5 .9
+	.highcolor. 1.0 .7 1.0
