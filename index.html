@@ -19,14 +19,16 @@
     </head>
     <body style="background-color: #000000;">
         <div style="position: absolute; z-index: 1; left: 20px; bottom: 20px; color: white">
-            <a href="https://github.com/sgi-demos/" style="color: white">source</a> 
+            <a href="https://github.com/sgi-demos/" style="color: white">source</a>
         </div>
         <canvas class = "fullwindow" id="canvas" oncontextmenu="event.preventDefault()"/>
         <script type="text/javascript">
             var Module = {};
             Module.canvas = document.getElementById('canvas');
+            var demoBase = 'https://sgi-demos.org/sgi-demos/demos/buttonfly/web/';
+            Module.locateFile = function (path) { return demoBase + path; };
         </script>
-        <script async type="text/javascript" src="./buttonfly.js"></script>
+        <script async type="text/javascript" src="https://sgi-demos.org/sgi-demos/demos/buttonfly/web/buttonfly.js"></script>
     </body>
 </html>
 
