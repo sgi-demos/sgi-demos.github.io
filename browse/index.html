@@ -122,6 +122,8 @@
             margin: 3.5rem 0 0;
         }
 
+        .card.here { outline: 2px solid #f0b35c; outline-offset: 2px; }
+
         a:focus-visible, .card:focus-within {
             outline: 2px solid var(--link);
             outline-offset: 2px;
@@ -193,6 +195,7 @@
 
         const card = document.createElement("div");
         card.className = "card";
+        card.id = name;
 
         // Thumbnail links to the demo, same as the "run" link.
         const img = document.createElement("img");
@@ -241,6 +244,13 @@
 
     const grid = document.getElementById("grid");
     demos.forEach(d => grid.appendChild(makeCard(d)));
+
+    // #<name> (a demo page's placard title links here): scroll to that card and mark it
+    const target = location.hash && document.getElementById(location.hash.slice(1));
+    if (target && target.classList.contains("card")) {
+        target.classList.add("here");
+        target.scrollIntoView({ block: "center" });
+    }
 </script>
 </body>
 </html>
