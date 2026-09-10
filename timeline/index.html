@@ -148,7 +148,6 @@
         .demo .links { margin-top: .5rem; display: flex; flex-wrap: wrap; gap: .3rem .9rem; font-size: .85rem; }
         .demo .links a { color: var(--text); }
         .demo h3 { margin: 0; font-size: 1.25rem; font-weight: 600; font-style: italic; line-height: 1.3; }
-        .demo h3 .sub { font-style: normal; font-weight: 400; color: var(--muted); font-size: .95rem; margin-left: .5rem; }
         .demo .meta { margin: .2rem 0 .5rem; color: var(--muted); font-size: .88rem; }
         .demo .meta .who { color: var(--text); }
         .demo .meta abbr { text-decoration: underline dotted; cursor: help; }
@@ -163,7 +162,12 @@
         .demo .history p { margin: 0 0 .6rem; color: #d6deea; font-size: .92rem; max-width: 78ch; }
         .demo details.sources { font-size: .8rem; color: var(--dim); }
         .demo details.sources summary { cursor: pointer; }
-        .demo details.sources a { display: block; word-break: break-all; }
+        .demo details.sources ol { margin: .2rem 0 0; padding-left: 1.4rem; }
+        .demo details.sources li { margin: .1rem 0; }
+        .demo details.sources a { word-break: break-word; }
+        .demo details.sources li:target { color: var(--accent); }
+        .demo .history sup.cite { font-size: .7em; line-height: 0; margin-left: .1em; }
+        .demo .history sup.cite a { color: var(--link); }
         .status-tag { display: inline-block; font-size: .7rem; padding: 0 .4rem; border-radius: 3px; border: 1px solid var(--line); color: var(--muted); vertical-align: 2px; margin-left: .5rem; font-style: normal; font-weight: 400; }
 
         footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; max-width: 80ch; }
@@ -237,8 +241,14 @@
     // ---- helpers ------------------------------------------------------------
     const kw = {}; T.keywords.forEach(g => g.items.forEach(k => { kw[k.id] = k; }));
     const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    const srcUrl = s => s.startsWith("NYC/") ? NYC + s.slice(4) : s;
-    const srcLabel = s => s.startsWith("NYC/") ? "comp.sys.sgi " + s.slice(4).replace(".txt.gz", "") : s.replace(/^https?:\/\//, "").replace(/\/$/, "");
+    const srcUrl = s => { const u = typeof s === "string" ? s : s.url; return u.startsWith("NYC/") ? NYC + u.slice(4) : u; };
+    const srcLabel = s => {
+        if (typeof s !== "string" && s.label) return s.label;
+        const u = typeof s === "string" ? s : s.url;
+        return u.startsWith("NYC/") ? "comp.sys.sgi " + u.slice(4).replace(".txt.gz", "") : u.replace(/^https?:\/\//, "").replace(/\/$/, "");
+    };
+    // "[3]" in a history paragraph -> a superscript link to that demo's third source
+    const cite = (text, id) => text.replace(/ ?\[(\d+)\]/g, (m, n) => `<sup class="cite"><a href="#src-${id}-${n}">${n}</a></sup>`);   // the space before the marker goes too
     function authorsOf(d) { return d.authors.map(a => T.people[a] ? T.people[a].name : a); }
     function span(d) {
         const s = d.shipped || [];
@@ -382,14 +392,14 @@
         const shipped = sp ? `<div class="span"><b>Shipped by SGI ${year(sp.first.date)}${year(sp.last.date) !== year(sp.first.date) ? " to " + year(sp.last.date) : ""}${sp.uncertain ? " (end uncertain)" : ""}</b><ul>${d.shipped.map(s => `<li>${esc(s.on)}, ${fmt(s.date)} <span class="how">&middot; ${esc(s.how)}${s.note ? " (" + esc(s.note) + ")" : ""}</span></li>`).join("")}</ul></div>` : "";
         const revived = d.revived && d.revived.length ? `<div class="span"><b>Revived</b><ul>${d.revived.map(r => `<li>${esc(r.on)}, ${fmt(r.date)} <span class="how">&middot; ${esc(r.how)}</span></li>`).join("")}</ul></div>` : "";
         const chips = `<div class="chips">${d.keywords.map(k => `<button type="button" class="chip" data-k="${k}" title="${esc(kw[k] ? kw[k].desc : "")}">${esc(kw[k] ? kw[k].label : k)}</button>`).join("")}</div>`;
-        const hist = (d.history || []).map(p => `<p>${p}</p>`).join("");
-        const src = d.sources && d.sources.length ? `<details class="sources"><summary>sources</summary>${d.sources.map(s => `<a href="${esc(srcUrl(s))}">${esc(srcLabel(s))}</a>`).join("")}</details>` : "";
+        const hist = (d.history || []).map(p => `<p>${cite(p, d.id)}</p>`).join("");
+        const src = d.sources && d.sources.length ? `<details class="sources" open><summary>sources</summary><ol>${d.sources.map((s, i) => `<li id="src-${d.id}-${i + 1}"><a href="${esc(srcUrl(s))}">${esc(srcLabel(s))}</a></li>`).join("")}</ol></details>` : "";
         const tag = d.status === "exhibit" ? "" : `<span class="status-tag">${d.status === "coming" ? "coming" : "source only"}</span>`;
         const links = [hasRun ? `<a href="${run}">run</a>` : "", `<a href="${source}">source</a>`, d.source ? "" : `<a href="${readme}">README</a>`].filter(Boolean).join("");
         return `<article class="demo" id="demo-${d.id}" data-id="${d.id}">
             <div class="thumb-col">${thumbEl}<div class="links">${links}</div></div>
             <div class="body">
-                <h3>${esc(d.title)}${d.subtitle ? `<span class="sub">${esc(d.subtitle)}</span>` : ""}${tag}</h3>
+                <h3>${esc(d.title)}${tag}</h3>
                 <div class="meta"><span class="who">${who}</span> &middot; written ${wn}${ed}</div>
                 <p class="summary">${esc(d.summary)}</p>
                 ${shipped}${revived}${chips}

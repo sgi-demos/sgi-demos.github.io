@@ -207,7 +207,7 @@ window.TIMELINE = {
     tristram: { name: "David A. Tristram", note: "Wrote Electropaint and the Panel Library at NASA Ames from 1986; at SGI by 1990. Tristram Visual holds the Electropaint trademark (filed 1999)." },
     look:     { name: "Howard Look", note: "SGI Customer Support, May 1989 to February 1998: night and twilight. Later TiVo, Pixar, Linden Lab, and Tidepool." },
     olsen:    { name: "Wade Olsen", note: "Wrote buttonfly; later SGI VR and Performer demos (SIGGRAPH '93 with Linda Roy)." },
-    sgi:      { name: "Silicon Graphics", note: "Author not recorded in the source." }
+    sgi:      { name: "Unattributed", note: "No author is recorded in the source; the program is SGI's." }
   },
 
   // ---------------------------------------------------------------------------
@@ -240,12 +240,19 @@ window.TIMELINE = {
         { on: "IRIX 3.3", date: "1990-06", how: "/usr/demos/bin/flight and dog (eoe2.sw.demos); dog on IP multicast" },
         { on: "Developer Toolbox 2.0", date: "1991", how: "source, WINGMAN revision" } ],
       keywords: ["interactive", "animated", "simulation", "flight-sim", "game", "multiplayer", "colormap", "flat", "backface", "painters", "double-buffer", "display-lists", "halftone", "writemask", "overlay", "keyboard", "mouse", "dials", "iris-gl"],
-      summary: "Gary Tarolli's flight simulator in its colormap-mode form: six aircraft, a 1280 by 1024 instrument panel composited in the bitplanes, and dog for Ethernet dogfights.",
+      summary: "Gary Tarolli's flight simulator in its colormap-mode form: six aircraft, an instrument panel composited in the bitplanes, and dog for Ethernet dogfights.",
       history: [
-        "Flight is the oldest program on exhibit and SGI's showpiece almost from the company's founding. Gary Tarolli wrote it in the summer of 1983, inspired by Blue Angels shows over Moffett Field; version 1.0 shipped with the IRIS 1400 in 1984, and that summer SIGGRAPH saw it played over XNS multicast. Dog, the dogfight, followed in early 1985 and moved to UDP broadcast on port 5130 in 1986, which is why the networked-virtual-environment literature calls it the first networked multiplayer 3D game.",
-        "The demo-tape source of 1988 to 1989 is the version 2.4 lineage rebuilt for the 4D: colour-index mode, flat shading, a painter's-algorithm depth sort, and meters drawn by masking bitplanes. By then Rob Mace owned the code; Tarolli wrote on comp.sys.sgi in February 1989 that the planes were half real and half there to make dog fun, that the threat cones and HUD were built for Williams Air Force Base, and that airshow recording (dog -o) was meant for flying against yourself. The banner still reads the unsubstituted \"Version vnum\"; this source never numbered itself."
+        "Flight is the oldest program on exhibit and SGI's showpiece almost from the company's founding. By the account in Singhal and Zyda's Networked Virtual Environments, Gary Tarolli wrote it in the summer of 1983, inspired by the Blue Angels' shows over Moffett Field [1]; version 1.0 shipped with the IRIS 1400 in 1984 [5], and that summer SIGGRAPH saw it played over XNS multicast [1]. Dog, the dogfight, followed in early 1985 and moved to UDP broadcast on port 5130 in 1986, which is why the same literature calls it the first networked multiplayer 3D game [1]. Tarolli's own telling is in his 2013 Computer History Museum oral history [6].",
+        "The demo-tape source of 1988 to 1989 is the version 2.4 lineage rebuilt for the 4D: colour-index mode, flat shading, a painter's-algorithm depth sort, and meters drawn by masking bitplanes [4]. By then Rob Mace owned the code [3]; Tarolli wrote on comp.sys.sgi in February 1989 that the planes were half real and half there to make dog fun, that the threat cones and HUD were built for Williams Air Force Base, and that airshow recording (dog -o) was meant for flying against yourself [2]. The banner still reads the unsubstituted \"Version vnum\"; this source never numbered itself [4]."
       ],
-      sources: ["NYC/1989-February.txt.gz", "NYC/1988-December.txt.gz", "https://en.wikipedia.org/wiki/SGI_Dogfight", "https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z", "https://github.com/sgi-demos/sgi-demos/issues/4"],
+      sources: [
+        { url: "https://en.wikipedia.org/wiki/SGI_Dogfight", label: "Sandeep Singhal and Michael Zyda, Networked Virtual Environments (Addison-Wesley, 1999), as cited by Wikipedia's SGI Dogfight article" },
+        { url: "NYC/1989-February.txt.gz", label: "Gary Tarolli on comp.sys.sgi, 20 February 1989 (nycbug archive, 1989-February)" },
+        { url: "NYC/1988-December.txt.gz", label: "Rob Mace on comp.sys.sgi, 6 and 7 December 1988 (nycbug archive, 1988-December)" },
+        { url: "https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z", label: "IRIS 4D demo tape, sgidemos.tar.Z at bitsavers: the CLOVER1/flight source and its Makefile" },
+        { url: "https://github.com/sgi-demos/sgi-demos/issues/4", label: "flight 1.0 for the IRIS 1400, the 68k executable contributed in sgi-demos issue 4" },
+        { url: "https://archive.computerhistory.org/resources/access/text/2014/05/102746834-05-01-acc.pdf", label: "Gary Tarolli oral history, Computer History Museum, 29 July 2013" }
+      ],
       status: "exhibit" },
 
     { id: "flight-1994", title: "Flight 3.4", subtitle: "the IRIX flight everyone remembers",
@@ -261,10 +268,13 @@ window.TIMELINE = {
       keywords: ["interactive", "animated", "simulation", "flight-sim", "game", "multiplayer", "rgb", "gouraud", "hardware-lighting", "texture", "fog", "blending", "z-buffer", "backface", "double-buffer", "tmesh", "keyboard", "mouse", "dials", "spaceball", "sound", "iris-gl"],
       summary: "Rob Mace's unified flight: RGB with lighting, fog, terrain texture, eight aircraft, a full-width horizon, HUD, and the companions dog, radar, and shadow in one binary.",
       history: [
-        "SGI's own README says it: version 3.4 was \"cleaned up, combined into one single version and swankified\" by Rob \"Mr. Flight\" Mace in 1994. The forks merged, the physics went time-based, the terrain got a texture, the sky a scrolling cloud deck, and the aircraft list grew to the Cessna 150, P-38, 747, F-16, F-15, F-14D, F-18, and 727. Its copyright runs 1984 to 1994, the whole life of the program.",
-        "It shipped with source in every Developer Toolbox from 1994 on, and SGI republished the same code in its 2003 Linux Toolbox under a permissive license, which is why this version can be redistributed without a fair-use argument. Michael Gold's Windows port of April 1997, 3.4.1 on Cosmo OpenGL, could dogfight against IRIS GL flight on a workstation; it was the last official version."
+        "SGI's own README says it: version 3.4 was \"cleaned up, combined into one single version and swankified\" by Rob \"Mr. Flight\" Mace in 1994 [1]. The forks merged, the physics went time-based, the terrain got a texture, the sky a scrolling cloud deck, and the aircraft list grew to the Cessna 150, P-38, 747, F-16, F-15, F-14D, F-18, and 727 [1]. Its copyright runs 1984 to 1994, the whole life of the program [1].",
+        "It shipped with source in every Developer Toolbox from 1994 on, and SGI republished the same code in its 2003 Linux Toolbox under a permissive license, which is why this version can be redistributed without a fair-use argument [1]. Michael Gold's Windows port of April 1997, 3.4.1 on Cosmo OpenGL, could dogfight against IRIS GL flight on a workstation; it was the last official version [2]."
       ],
-      sources: ["https://github.com/sgi-demos/sgi-demos/tree/main/demos/flight-1994", "https://notwood.net/sgiflight/", "https://archive.computerhistory.org/resources/access/text/2014/05/102746834-05-01-acc.pdf"],
+      sources: [
+        { url: "https://github.com/sgi-demos/sgi-demos/tree/main/demos/flight-1994", label: "The flight 3.4 source, SGI's 1994 README (README.orig), COPYRIGHT, and the version catalogue in the demo's README" },
+        { url: "https://notwood.net/sgiflight/", label: "SGI Flight Simulator for Windows 95/NT, release notes page dated 25 February 1998" }
+      ],
       status: "exhibit" },
 
     { id: "cedit", title: "Cedit", subtitle: "colour editor",
@@ -280,9 +290,15 @@ window.TIMELINE = {
       keywords: ["interactive", "static", "tool", "colormap", "mouse", "popup-menu", "iris-gl"],
       summary: "Pick a colormap entry on screen, then adjust it with sliders: the oldest tool on exhibit, and the longest-lived.",
       history: [
-        "Paul Haeberli joined SGI in February 1983 and wrote cedit in 1984 on his port library, the toolkit for GL2 tools that also produced the MEX window manager. SGI installed it as source in the gifts package on every IRIS 2400 and 3000. It stayed in the system for a decade: the gifts were ported to the 4D as 4Dgifts by the end of 1988, and cedit was compiled into /usr/sbin on IRIX 3, 4, and 5 with its source alongside. Sunflower, in the same directory, is its 1984 sibling."
+        "Paul Haeberli joined SGI in February 1983 [2] and wrote cedit in 1984 on his port library [1], the toolkit for GL2 tools; with Rocky Rhodes and Kipp Hickman he also wrote MEX, the first IRIS window manager [5]. SGI installed cedit as source in the gifts package on every IRIS 2400 and 3000 [1]. It stayed in the system for a decade: the gifts were ported to the 4D as 4Dgifts by the end of 1988 [3], and cedit was compiled into /usr/sbin on IRIX 3, 4, and 5 with its source alongside [4]. Sunflower, in the same directory, is its 1984 sibling [1]."
       ],
-      sources: ["https://bitsavers.org/bits/SGI/iris/gl2-w3.6+options.tar.gz", "https://www.graficaobscura.com/paul/", "NYC/1989-January.txt.gz", "https://github.com/sgi-demos/sgi-demos/tree/main/demos/cedit"],
+      sources: [
+        { url: "https://bitsavers.org/bits/SGI/iris/gl2-w3.6+options.tar.gz", label: "GL2-W3.6 tapes at bitsavers: usr/people/gifts/mextools, files dated 20 December 1987" },
+        { url: "https://www.graficaobscura.com/paul/", label: "Paul Haeberli's biography at Grafica Obscura" },
+        { url: "NYC/1989-January.txt.gz", label: "comp.sys.sgi, 1 and 3 January 1989: 4Dgifts in 4D1-3.1 (nycbug archive, 1989-January)" },
+        { url: "https://github.com/sgi-demos/sgi-demos/tree/main/demos/cedit", label: "The cedit README: the IRIX 3.3 and 4.0.1 package listings that carry /usr/sbin/cedit and its 4Dgifts source" },
+        { url: "https://en.wikipedia.org/wiki/MEX_(windowing_system)", label: "MEX window manager (Rhodes, Haeberli, Hickman, USENIX 1985)" }
+      ],
       status: "exhibit" },
 
     { id: "sunflower", title: "Sunflower", subtitle: "seed-spiral pattern",
@@ -293,8 +309,10 @@ window.TIMELINE = {
         { on: "GL2-W3.6", date: "1987", how: "source in /usr/people/gifts/mextools/tools", note: "the surviving tape of this release was cut 10 May 1989" } ],
       keywords: ["static", "generative", "colormap", "halftone", "iris-gl"],
       summary: "Circles placed on the sunflower spiral, sized by a growth factor: a 1984 one-file generative sketch.",
-      history: [ "A companion of cedit from Haeberli's 1984 gifts tools. Not built yet; the source is in the repository." ],
-      sources: ["https://github.com/sgi-demos/sgi-demos/tree/main/demos/sunflower"],
+      history: [ "A companion of cedit from Haeberli's 1984 gifts tools [1]. Not built yet; the source is in the repository [1]." ],
+      sources: [
+        { url: "https://github.com/sgi-demos/sgi-demos/tree/main/demos/sunflower", label: "The sunflower source and README: from the GL2-W3.6 gifts package, author line dated 1984" }
+      ],
       status: "storage" },
 
     { id: "insect", title: "Insect", subtitle: "six-legged walker",
@@ -309,10 +327,16 @@ window.TIMELINE = {
       keywords: ["interactive", "animated", "simulation", "colormap", "flat", "software-lighting", "painters", "backface", "projected-shadow", "double-buffer", "display-lists", "mouse", "keyboard", "iris-gl"],
       summary: "A joint-motion algorithm for a six-legged walker, drawn with backface removal and a painter's sort, lit once in software, with a matrix-projected shadow.",
       history: [
-        "Thant Tessman wrote insect for the 68020 IRIS 2400, before z-buffers were standard: hidden surfaces are handled by sorting and backface removal, and the lighting is computed once at startup. It was already on SGI's list of requestable demo sources in the first IRIS Universe, spring 1987. David Ligon adapted it to the Personal IRIS's 8-bitplane colormap and the 4D window system in August 1988. Left-drag moves the eye, middle-drag reorients, F follows the insect.",
-        "In July 1990 a Usenet reader asked whether insect was public domain; SGI's Gavin Bell answered that it was copyrighted and on the $100 User Services tape. Lawrence Kesteloot saw it on an IRIS at the Naval Research Lab in 1989 and ported it to Turbo Pascal; decades later it was the demo the Alice 4 project showed beside a real Personal IRIS, with Tessman in the room."
+        "Thant Tessman wrote insect for the 68020 IRIS 2400, before z-buffers were standard: hidden surfaces are handled by sorting and backface removal, and the lighting is computed once at startup [4]. It was already on SGI's list of requestable demo sources in the first IRIS Universe, spring 1987 [1]. David Ligon adapted it to the Personal IRIS's 8-bitplane colormap and the 4D window system in August 1988 [4]. Left-drag moves the eye, middle-drag reorients, F follows the insect.",
+        "In July 1990 a Usenet reader asked whether insect was public domain; SGI's Gavin Bell answered that it was copyrighted and on the $100 User Services tape [2]. Lawrence Kesteloot saw it on an IRIS at the Naval Research Lab in 1989 and ported it to Turbo Pascal [5]; decades later it was the demo the Alice 4 project showed beside a real Personal IRIS, with Tessman in the room [3]."
       ],
-      sources: ["https://archive.org/details/IrisUniverse1983", "NYC/1990-July.txt.gz", "https://lkesteloot.github.io/alice/alice4/", "https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z"],
+      sources: [
+        { url: "https://archive.org/details/IrisUniverse1983", label: "IRIS Universe, spring 1987 (Internet Archive): demo sources available on request" },
+        { url: "NYC/1990-July.txt.gz", label: "comp.sys.sgi, 6 July 1990: Gavin Bell on the demo source's copyright (nycbug archive, 1990-July)" },
+        { url: "https://lkesteloot.github.io/alice/alice4/", label: "The Alice 4 project page: insect's attribution and the VCF West showing" },
+        { url: "https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z", label: "IRIS 4D demo tape: insect.c with Ligon's 29 August 1988 header and the insect.info slide" },
+        { url: "https://www.teamten.com/lawrence/projects/turbo_pascal_compiler/", label: "Lawrence Kesteloot on his Turbo Pascal port of insect" }
+      ],
       status: "exhibit" },
 
     { id: "logo", title: "Logo", subtitle: "grow a logo",
@@ -326,9 +350,13 @@ window.TIMELINE = {
       keywords: ["interactive", "animated", "logo", "rgb", "hardware-lighting", "z-buffer", "double-buffer", "mouse", "iris-gl"],
       summary: "The SGI cube grown from 1,296 quadrilaterals rebuilt every frame under two hardware lights and a z-buffer.",
       history: [
-        "Tessman's July 1987 demo of the two things the new 4D did in hardware: lighting and z-buffering, written in \"three days and much ugly hacking\" in his first months at SGI. The slide makes a point of the object being rebuilt each frame rather than replayed from a display list. Left button restarts the growth, middle-drag reorients."
+        "Tessman's July 1987 demo of the two things the new 4D did in hardware: lighting and z-buffering, written in \"three days and much ugly hacking\" [1] in his first months at SGI [3]. The slide makes a point of the object being rebuilt each frame rather than replayed from a display list [1]. Left button restarts the growth, middle-drag reorients."
       ],
-      sources: ["https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z", "NYC/1989-November.txt.gz"],
+      sources: [
+        { url: "https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z", label: "IRIS 4D demo tape: logo.c's header and the logo.info slide" },
+        { url: "NYC/1989-November.txt.gz", label: "IRIX 3.2 release notes, comp.sys.sgi, 19 November 1989: logo among the new demos (nycbug archive, 1989-November)" },
+        { url: "http://www.standarddeviance.com/experience/experience.html", label: "Thant Tessman's CV: Technical Marketing, Silicon Graphics, 1987 to 1990 (Wayback Machine copy)" }
+      ],
       status: "exhibit" },
 
     { id: "jello", title: "Jello", subtitle: "elastic body",
@@ -342,9 +370,13 @@ window.TIMELINE = {
       keywords: ["interactive", "animated", "simulation", "physics", "rgb", "z-buffer", "halftone", "projected-shadow", "double-buffer", "mouse", "popup-menu", "iris-gl"],
       summary: "An icosahedron of 13 masses joined by springs, integrated every frame, dropped into a box with a halftone shadow.",
       history: [
-        "The slide prints the integrator: v = v + a dt, p = p + v dt, for each mass. Jello is the demo tape's physics demo; IRIX 3.2 added newton, described in its release notes as an enhanced jello with a catalogue of shapes, which outlived it into IRIX 5. Left button drops it, middle-drag reorients the container."
+        "The slide prints the integrator: v = v + a dt, p = p + v dt, for each mass [1]. Jello is the demo tape's physics demo; IRIX 3.2 added newton, described in its release notes as an enhanced jello with a catalogue of shapes [2], which outlived it into IRIX 5 [3]. Left button drops it, middle-drag reorients the container."
       ],
-      sources: ["https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z", "NYC/1989-November.txt.gz", "https://lkesteloot.github.io/alice/alice4/"],
+      sources: [
+        { url: "https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z", label: "IRIS 4D demo tape: jello.c's header and the jello.info slide" },
+        { url: "NYC/1989-November.txt.gz", label: "IRIX 3.2 release notes, comp.sys.sgi, 19 November 1989 (nycbug archive, 1989-November)" },
+        { url: "https://github.com/sgi-demos/sgi-demos.github.io/tree/main/timeline", label: "IRIX 4.0.1 and 5.1.1 package listings (newton in eoe2.sw.moredemos and demos.sw.visualization), from the project's own inspection of the install media" }
+      ],
       status: "exhibit" },
 
     { id: "ideas", title: "Ideas in Motion", subtitle: "the lamp and the letters",
@@ -356,9 +388,13 @@ window.TIMELINE = {
       keywords: ["animated", "logo", "rgb", "hardware-lighting", "software-lighting", "z-buffer", "tmesh", "projected-shadow", "double-buffer", "iris-gl"],
       summary: "Letters spell ideas on a lit tabletop under a lamp; the logo and lamp are lit in hardware, the spotlight on the table in software, at eight to fourteen frames a second on a 4D/70GT.",
       history: [
-        "The slide gives the budget: 2,016 meshed triangles each for the logo and its shadow, 384 for the lamp, about 1,200 for the letters, all lit and moved every frame. It is the demo tape's showpiece animation and needs no input beyond the mouse to quit. No author is named in the source; a 2003 demoparty biography of Thant Tessman lists \"insect, jello, and ideas in motion\" as his. A later OpenGL rewrite of Ideas became a GLUT sample and, in 2012, a glmark2 scene for OpenGL's twentieth anniversary."
+        "The slide gives the budget: 2,016 meshed triangles each for the logo and its shadow, 384 for the lamp, about 1,200 for the letters, all lit and moved every frame [1]. It is the demo tape's showpiece animation and needs no input beyond the mouse to quit [1]. No author is named in the source; a 2003 demoparty biography of Thant Tessman lists \"insect, jello, and ideas in motion\" as his [2]. A later OpenGL rewrite of Ideas became a GLUT sample and, in 2012, a glmark2 scene for OpenGL's twentieth anniversary [3]."
       ],
-      sources: ["https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z", "https://demozoo.org/parties/1227/results_file/538/", "https://blueprints.launchpad.net/glmark2/+spec/glmark2-ideas"],
+      sources: [
+        { url: "https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z", label: "IRIS 4D demo tape: the ideas sources and the ideas.info slide" },
+        { url: "https://demozoo.org/parties/1227/results_file/538/", label: "Pilgrimage 2003 demoparty results file: speaker biography of Thant Tessman" },
+        { url: "https://blueprints.launchpad.net/glmark2/+spec/glmark2-ideas", label: "glmark2 blueprint for the Ideas in Motion scene, May 2012" }
+      ],
       status: "exhibit" },
 
     { id: "bounce", title: "Bounce", subtitle: "balls in a wire room",
@@ -372,9 +408,12 @@ window.TIMELINE = {
       keywords: ["interactive", "animated", "simulation", "rgb", "hardware-lighting", "z-buffer", "backface", "tmesh", "double-buffer", "mouse", "popup-menu", "iris-gl"],
       summary: "Three lit, shaded balls bouncing in a cubic room, with a menu of other objects: martini glass, doughnut, VW, X-29, candlestick, SGI logo.",
       history: [
-        "No author anywhere. Bounce is the demo the Alice 4 project ported first, and the most adapted source in this collection because of it. The .bin object files are the demo's own model format."
+        "No author anywhere [1]. Bounce is the demo the Alice 4 project ported first, and the most adapted source in this collection because of it [2]. The .bin object files are the demo's own model format [1]."
       ],
-      sources: ["https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z", "https://lkesteloot.github.io/alice/alice4/"],
+      sources: [
+        { url: "https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z", label: "IRIS 4D demo tape: bounce.c and the .bin object files" },
+        { url: "https://lkesteloot.github.io/alice/alice4/", label: "The Alice 4 project page and its libgl port of bounce" }
+      ],
       status: "exhibit" },
 
     { id: "newave", title: "Newave", subtitle: "wave surface",
@@ -386,8 +425,10 @@ window.TIMELINE = {
         { on: "IRIX 3.3", date: "1990-06", how: "/usr/demos/bin/newave (eoe2.sw.demos)" } ],
       keywords: ["interactive", "animated", "simulation", "colormap", "colour-cycling", "depth-cue", "z-buffer", "double-buffer", "mouse", "popup-menu", "iris-gl"],
       summary: "A wave on a grid under a spinning light, depth-cued through the colormap; you edit the mesh by hand, then set it going.",
-      history: [ "Nothing on the tape names an author or a machine. The wave starts flat: right-click, edit, pull a point up, then go." ],
-      sources: ["https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z"],
+      history: [ "Nothing on the tape names an author or a machine [1]. The wave starts flat: right-click, edit, pull a point up, then go." ],
+      sources: [
+        { url: "https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z", label: "IRIS 4D demo tape: newave.c, dated 3 January 1989" }
+      ],
       status: "exhibit" },
 
     { id: "arena", title: "Arena", subtitle: "a future sport",
@@ -400,8 +441,12 @@ window.TIMELINE = {
         { on: "IRIX 3.3", date: "1990-06", how: "/usr/demos/bin/arena (eoe2.sw.demos)" } ],
       keywords: ["interactive", "animated", "game", "multiplayer", "colormap", "flat", "backface", "display-lists", "writemask", "halftone", "feedback", "double-buffer", "mouse", "keyboard", "iris-gl"],
       summary: "Mech combat in a maze, drawn in colour-index mode with display lists, with multi-player play over Ethernet (-n).",
-      history: [ "\"Simulates a future sport\" is all the slide says. Rob Mace signed a December 1988 comp.sys.sgi post as the author of arena and GT dog, and explained the next day that both use UDP broadcast (arena on port 5131) and that the broadcasts could halt a VAX on the same wire. Arena draws only what it needs to, in flat-shaded colour index. No network play in the port yet." ],
-      sources: ["NYC/1988-December.txt.gz", "NYC/1988-November.txt.gz", "https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z"],
+      history: [ "\"Simulates a future sport\" is all the slide says [3]. Rob Mace signed a December 1988 comp.sys.sgi post as the author of arena and GT dog, and explained the next day that both use UDP broadcast (arena on port 5131) and that the broadcasts could halt a VAX on the same wire [1]; arena's port had turned up in an /etc/services thread the month before [2]. Arena draws only what it needs to, in flat-shaded colour index [3]. No network play in the port yet." ],
+      sources: [
+        { url: "NYC/1988-December.txt.gz", label: "Rob Mace on comp.sys.sgi, 6 and 7 December 1988 (nycbug archive, 1988-December)" },
+        { url: "NYC/1988-November.txt.gz", label: "comp.sys.sgi, November 1988: the /etc/services thread listing arena 5131/udp (nycbug archive, 1988-November)" },
+        { url: "https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z", label: "IRIS 4D demo tape: the arena sources and the arena.info slide" }
+      ],
       status: "exhibit" },
 
     { id: "buttonfly", title: "Buttonfly", subtitle: "the demo launcher",
@@ -416,8 +461,13 @@ window.TIMELINE = {
         { on: "IRIX 6.5.12 General and Platform Demos CDs", date: "2001", how: "demo front end" } ],
       keywords: ["interactive", "animated", "launcher", "rgb", "flat", "hardware-lighting", "backface", "double-buffer", "mouse", "keyboard", "popup-menu", "iris-gl"],
       summary: "A user-configurable hierarchical menu of 3D buttons: blue ones run a command, purple ones tumble to reveal another set.",
-      history: [ "Wade Olsen's buttonfly became the front door of /usr/demos with IRIX 3.2 and stayed there for the rest of IRIX's life, on the 6.5 demo CDs a decade later; its menu files launched every other demo, and the right-button popup showed each demo's .info slide and man page. Nintendo's designers are said to have had it in mind for the Super Mario 64 menu. It is the front page of sgi-demos.org for the same reason." ],
-      sources: ["NYC/1989-November.txt.gz", "https://jrra.zone/sgi/", "https://www.nintendolife.com/news/2018/10/random_super_mario_64s_main_menu_was_apparently_based_on_a_silicon_graphics_software_package", "https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z"],
+      history: [ "Wade Olsen's buttonfly [4] became the front door of /usr/demos with IRIX 3.2 [1] and stayed there for the rest of IRIX's life, on the 6.5 demo CDs a decade later [2]; its menu files launched every other demo, and the right-button popup showed each demo's .info slide and man page [1]. Nintendo's designers are said to have had it in mind for the Super Mario 64 menu [3]. It is the front page of sgi-demos.org for the same reason." ],
+      sources: [
+        { url: "NYC/1989-November.txt.gz", label: "IRIX 3.2 release notes, comp.sys.sgi, 19 November 1989: buttonfly new, /usr/demos reorganized (nycbug archive, 1989-November)" },
+        { url: "https://jrra.zone/sgi/", label: "jrra.zone's SGI media catalogue: the IRIX 6.5 General and Platform Demos CDs" },
+        { url: "https://www.nintendolife.com/news/2018/10/random_super_mario_64s_main_menu_was_apparently_based_on_a_silicon_graphics_software_package", label: "Nintendo Life, October 2018, on Super Mario 64's menu and buttonfly" },
+        { url: "https://bitsavers.org/bits/SGI/iris/sgidemos.tar.Z", label: "IRIS 4D demo tape: buttonfly's sources, with Wade Olsen's author line in event.h" }
+      ],
       status: "exhibit" },
 
     { id: "gview", title: "Gview", subtitle: "the Barcelona Pavilion",
@@ -429,9 +479,16 @@ window.TIMELINE = {
       keywords: ["interactive", "animated", "viewer", "architecture", "radiosity", "rgb", "gouraud", "hardware-lighting", "z-buffer", "depth-cue", "overlay", "double-buffer", "mouse", "popup-menu", "iris-gl"],
       summary: "A viewer for GFO radiosity databases: Mies van der Rohe's 1929 German Pavilion in 2,676 Gouraud-shaded polygons, and a sphere room of 1,072.",
       history: [
-        "No source survives; gview.c was reconstructed from the IRIX 3 executable. The pavilion was dismantled after the 1929 exposition and rebuilt in Barcelona in 1986. SGI's radiosity team, Dan Baum, Efi Fogel, Dave Ligon, Jim Winget, Ben Garlick, and Rolf Van Widenfeld, solved it on a multiprocessor PowerSeries, showed it at SIGGRAPH '88 in Atlanta, and published the method in 1989 and 1990. The program does no radiosity itself: it displays the precomputed vertex colours. Fly-through and turntable modes work in the port."
+        "No source survives; gview.c was reconstructed from the IRIX 3 executable [3]. The pavilion was dismantled after the 1929 exposition and rebuilt in Barcelona in 1986 [6]. SGI's radiosity team, Dan Baum, Efi Fogel, Dave Ligon, Jim Winget, Ben Garlick, and Rolf Van Widenfeld, solved it on a multiprocessor PowerSeries and showed it at SIGGRAPH '88 in Atlanta [1], and published the method in 1989 [4] and 1990 [5]. The program does no radiosity itself: it displays the precomputed vertex colours [3]. Fly-through and turntable modes work in the port."
       ],
-      sources: ["https://archive.org/details/iris-universe-summer-1988", "NYC/1989-November.txt.gz", "https://github.com/sgi-demos/sgi-demos/tree/main/demos/gview"],
+      sources: [
+        { url: "https://archive.org/details/iris-universe-summer-1988", label: "IRIS Universe, summer 1988 (Internet Archive): the real-time radiosity page" },
+        { url: "NYC/1989-November.txt.gz", label: "IRIX 3.2 release notes, comp.sys.sgi, 19 November 1989: gview among the new demos (nycbug archive, 1989-November)" },
+        { url: "https://github.com/sgi-demos/sgi-demos/tree/main/demos/gview", label: "The gview README: reconstruction from the IRIX 3 executable, the .info slides, the April 1990 man page" },
+        { url: "https://doi.org/10.1145/74333.74367", label: "Baum, Rushmeier, and Winget, Improving Radiosity Solutions Through the Use of Analytically Determined Form-Factors, SIGGRAPH 1989" },
+        { url: "https://doi.org/10.1145/91385.91427", label: "Baum and Winget, Real Time Radiosity Through Parallel Processing and Hardware Acceleration, Symposium on Interactive 3D Graphics, 1990" },
+        { url: "https://en.wikipedia.org/wiki/Barcelona_Pavilion", label: "Barcelona Pavilion: dismantled 1930, reconstructed 1983 to 1986" }
+      ],
       status: "exhibit" },
 
     { id: "ep-1988", title: "Electropaint 1988", subtitle: "Panel Library v7",
@@ -445,9 +502,13 @@ window.TIMELINE = {
       keywords: ["animated", "attract", "generative", "screensaver", "colormap", "colour-cycling", "flat", "wireframe", "halftone", "smear", "z-buffer", "double-buffer", "tmesh", "keyboard", "iris-gl", "panel-library"],
       summary: "The earliest Electropaint: four mirrored copies of a triangle stream steered by plain sliders, in colour-index mode.",
       history: [
-        "David Tristram wrote Electropaint at NASA Ames as the demo for his Panel Library, a slider-and-button toolkit for IRIS GL, and gave it away on Usenet on 18 August 1988. The v7 sliders have no motion of their own, so the port drives them with slow oscillators. Every file carries his notice: public domain, may not be resold or relicensed."
+        "David Tristram wrote Electropaint at NASA Ames as the demo for his Panel Library, a slider-and-button toolkit for IRIS GL, and gave it away on Usenet on 18 August 1988 [1]. The v7 sliders have no motion of their own, so the port drives them with slow oscillators [3]. Every file carries his notice: public domain, may not be resold or relicensed [1]. By July 1989 SGI's User Services was also shipping it on its $100 software exchange tape [2]."
       ],
-      sources: ["NYC/1988-August.txt.gz", "NYC/1989-July.txt.gz"],
+      sources: [
+        { url: "NYC/1988-August.txt.gz", label: "David Tristram's six-part Panel Library posting, comp.sys.sgi, 18 August 1988 (nycbug archive, 1988-August)" },
+        { url: "NYC/1989-July.txt.gz", label: "comp.sys.sgi, 14 July 1989: the IRIS Software Exchange Release tape (nycbug archive, 1989-July)" },
+        { url: "https://github.com/sgi-demos/sgi-demos/tree/main/demos/ep-1988", label: "The ep-1988 README: how the v7 source differs and how the port drives it" }
+      ],
       status: "exhibit" },
 
     { id: "ep-1989", title: "Electropaint 1989", subtitle: "Panel Library 9.6",
@@ -462,9 +523,15 @@ window.TIMELINE = {
       keywords: ["animated", "attract", "generative", "screensaver", "colormap", "colour-cycling", "rgb", "hardware-lighting", "flat", "wireframe", "halftone", "smear", "blending", "z-buffer", "double-buffer", "tmesh", "keyboard", "iris-gl", "panel-library"],
       summary: "The mature IRIS GL Electropaint: self-animating Modsliders, the mirror-fold ribbons, and an RGB lighting path for the GT; driven here by Tristram's authentic default script.",
       history: [
-        "The March 1989 Panel Library release added the bevelled 3D look, menus, and a Control Panel Editor, and this ep.c with it. By mid-1990 Tristram had moved from NASA to SGI, and in September 1990 Paul Haeberli posted a prebuilt IRIX 3.3 binary to comp.sys.sgi as \"Dave Tristram's Electro-Paint Productivity Tool\", producing a flurry of \"it just sits there\" replies and Tristram's own statement that it has no purposes except the self-evident ones. This version is the one that spread: it turns up in the GRASS GIS source tree and in IGL, the IRIS GL emulator for Linux and Windows. The port runs the geometry choreography of Tristram's default script, recovered from the 1994 screensaver, in colour-index mode."
+        "The March 1989 Panel Library release added the bevelled 3D look, menus, and a Control Panel Editor, and this ep.c with it [1]. By mid-1990 Tristram had moved from NASA to SGI, and in September 1990 Paul Haeberli posted a prebuilt IRIX 3.3 binary to comp.sys.sgi as \"Dave Tristram's Electro-Paint Productivity Tool\", producing a flurry of \"it just sits there\" replies and Tristram's own statement that it has no purposes except the self-evident ones [2]. NASA Tech Briefs wrote the library up in 1992, at version 9.8 [3]. This version is the one that spread: it turns up in the GRASS GIS source tree [5] and in IGL, the IRIS GL emulator for Linux and Windows [4]. The port runs the geometry choreography of Tristram's default script, recovered from the 1994 screensaver, in colour-index mode [5]."
       ],
-      sources: ["NYC/1989-March.txt.gz", "NYC/1990-September.txt.gz", "https://ntrs.nasa.gov/search.jsp?R=19920000697", "https://github.com/sgi-demos/igl"],
+      sources: [
+        { url: "NYC/1989-March.txt.gz", label: "New Release of the Panel Library, comp.sys.sgi, 24 March 1989 (nycbug archive, 1989-March)" },
+        { url: "NYC/1990-September.txt.gz", label: "Paul Haeberli's binary posting and David Tristram's replies, comp.sys.sgi, 18 and 19 September 1990 (nycbug archive, 1990-September)" },
+        { url: "https://ntrs.nasa.gov/search.jsp?R=19920000697", label: "NASA Tech Briefs, 1992: Panel Library and Editor (Raible, Tristram, Walatka)" },
+        { url: "https://github.com/sgi-demos/igl", label: "IGL 0.1.8, the IRIS GL emulator, with the Panel Library and ep.c as its demo app" },
+        { url: "https://github.com/sgi-demos/sgi-demos/tree/main/demos/ep-1989", label: "The ep-1989 README: the GRASS 4.3 comparison and the script engine" }
+      ],
       status: "exhibit" },
 
     { id: "ep-1994-ogl-decomp", title: "Electropaint 1994", subtitle: "the OpenGL screensaver, decompiled",
@@ -479,10 +546,16 @@ window.TIMELINE = {
       keywords: ["animated", "attract", "generative", "screensaver", "rgb", "flat", "wireframe", "smear", "keyboard", "opengl"],
       summary: "The Electropaint that ran on every idle IRIX screen: the famous default script with smooth HLS colour, recovered by decompiling the MIPS binary.",
       history: [
-        "Tristram rewrote Electropaint for OpenGL as the IRIX screensaver, and it wasn't quite the same afterwards: the rewrite lost the four-fold mirrors and shipped with an inverted 60-degree camera. It is the version everyone remembers from Indy and O2-era IRIX, and it stayed through 6.5. Mark Laws (drvink) decompiled the binary in 2014 with a purpose-built MIPS decompiler; Brendan Shanks made the output portable C. The port renders it through an IRIS GL shim, and the M key switches between the shipped 1994 look and the IRIS-faithful one.",
-        "Its footprint runs from Andrew Plotkin's StonerView (1998), written from memory and later in xscreensaver, through elektropaintjs and macOS wrappers, to the trademark Tristram filed in 1999. The companion demo, Electropaint 1994 (reversed), is the same program with the decompiler's mangled names replaced by readable ones, byte-identical in output."
+        "Tristram rewrote Electropaint for OpenGL as the IRIX screensaver, and it wasn't quite the same afterwards: the rewrite lost the four-fold mirrors and shipped with an inverted 60-degree camera [4]. It is the version everyone remembers from Indy and O2-era IRIX, and it stayed through 6.5 [2]. Mark Laws (drvink) decompiled the binary in 2014 with a purpose-built MIPS decompiler; Brendan Shanks made the output portable C [1]. The port renders it through an IRIS GL shim, and the M key switches between the shipped 1994 look and the IRIS-faithful one [4].",
+        "Its footprint runs from Andrew Plotkin's StonerView (1998), written from memory and later in xscreensaver [3], through elektropaintjs and macOS wrappers, to the trademark Tristram filed in 1999 [5]. The companion demo, Electropaint 1994 (reversed), is the same program with the decompiler's mangled names replaced by readable ones, byte-identical in output."
       ],
-      sources: ["https://github.com/drvink/electroportis", "https://www.jwz.org/blog/2019/06/irix-6-5-screen-savers/", "https://www.eblong.com/zarf/stonerview.html", "https://github.com/sgi-demos/sgi-demos/tree/main/demos/ep-1994-ogl-decomp"],
+      sources: [
+        { url: "https://github.com/drvink/electroportis", label: "ElectroPortis: drvink's decompilation of the IRIX OpenGL ep, first release 5 May 2014" },
+        { url: "https://www.jwz.org/blog/2019/06/irix-6-5-screen-savers/", label: "jwz, IRIX 6.5 screen savers, June 2019" },
+        { url: "https://www.eblong.com/zarf/stonerview.html", label: "Andrew Plotkin, StonerView" },
+        { url: "https://github.com/sgi-demos/sgi-demos/tree/main/demos/ep-1994-ogl-decomp", label: "The ep-1994 README: the rewrite's two accidents and the M key" },
+        { url: "https://trademarks.justia.com/756/32/electropaint-75632551.html", label: "ELECTROPAINT trademark, serial 75632551, filed 6 February 1999" }
+      ],
       status: "exhibit" },
 
     { id: "night", title: "Night", subtitle: "sunset background",
@@ -492,8 +565,14 @@ window.TIMELINE = {
         { on: "comp.sys.sgi", date: "1990-06-06", how: "night.c posted as \"Twilight Background Program\"; Night 2.29 by 20 July 1990" } ],
       keywords: ["static", "background", "rgb", "gouraud", "wireframe", "iris-gl"],
       summary: "Howard Look's sunset: a Gouraud gradient sky with a horizon line, the precursor of twilight.",
-      history: [ "Look, in SGI Customer Support, posted a sixty-line \"way cool background\" for the 4Sight root window on 6 June 1990, needing 24 bitplanes. Within six weeks a Calgary sysadmin, Trevor Paquette, was maintaining version 2.29 with twinkling stars, Mars, and comets from Reuel Nash, and Venus and the screen aspect ratio from David Tristram of Electropaint (26 June 1990). Look reposted it that December as an imakebackground example. Version 2.29 is in the repository, not yet built." ],
-      sources: ["NYC/1990-June.txt.gz", "NYC/1990-July.txt.gz", "NYC/1990-December.txt.gz", "https://gist.github.com/sgi-demos/f90c37b0ae2bc1cdbf22e67196c3e4dc", "https://forums.irixnet.org/thread-3880.html"],
+      history: [ "Look, in SGI Customer Support, posted a sixty-line \"way cool background\" for the 4Sight root window on 6 June 1990, needing 24 bitplanes [1]. Within six weeks a Calgary sysadmin, Trevor Paquette, was maintaining version 2.29 with twinkling stars, Mars, and comets from Reuel Nash, and Venus and the screen aspect ratio from David Tristram of Electropaint (26 June 1990) [2]. Look reposted it that December as an imakebackground example [3]. Version 2.29 is in the repository, not yet built [4]." ],
+      sources: [
+        { url: "NYC/1990-June.txt.gz", label: "Howard Look, Twilight Background Program, comp.sys.sgi, 6 June 1990, and the replies (nycbug archive, 1990-June)" },
+        { url: "NYC/1990-July.txt.gz", label: "Trevor Paquette's Night 2.20 and 2.29 postings, comp.sys.sgi, 6 and 20 July 1990 (nycbug archive, 1990-July)" },
+        { url: "NYC/1990-December.txt.gz", label: "Howard Look's repost, comp.sys.sgi, 3 December 1990 (nycbug archive, 1990-December)" },
+        { url: "https://gist.github.com/sgi-demos/f90c37b0ae2bc1cdbf22e67196c3e4dc", label: "Night 2.29 source, gist" },
+        { url: "https://forums.irixnet.org/thread-3880.html", label: "IRIXNet thread, March 2023, where night and twilight resurfaced" }
+      ],
       status: "storage" },
 
     { id: "twilight", title: "Twilight", subtitle: "the twilight sky",
@@ -505,8 +584,12 @@ window.TIMELINE = {
         { on: "GitHub gist", date: "2015-02-10", how: "slacy posts twilight.c; the copy built here" } ],
       keywords: ["static", "background", "rgb", "gouraud", "halftone", "iris-gl"],
       summary: "A root-window background: a colour gradient with 2,500 small stars and a scattering of large ones.",
-      history: [ "Twilight is night grown up: a proper SGI copyright, a permissive license, RGB and colormap paths, and a starfield. Its use at SGI was as a desktop background chosen from the Windows toolchest, not a demo backdrop. It is the one static picture on exhibit, and the demo that shows what an IRIS desktop looked like before you started anything." ],
-      sources: ["https://gist.github.com/slacy/5ec0b38e8fe4da52f40e", "NYC/1990-June.txt.gz", "https://forums.irixnet.org/thread-3880.html"],
+      history: [ "Twilight is night grown up: a proper SGI copyright, a permissive license, RGB and colormap paths, and a starfield [1]. Its use at SGI was as a desktop background chosen from the Windows toolchest, not a demo backdrop [2]. It is the one static picture on exhibit, and the demo that shows what an IRIS desktop looked like before you started anything." ],
+      sources: [
+        { url: "https://gist.github.com/slacy/5ec0b38e8fe4da52f40e", label: "twilight.c, gist by slacy, 10 February 2015: Howard Look's source with SGI's 1991 to 1992 notice" },
+        { url: "NYC/1990-June.txt.gz", label: "comp.sys.sgi, 7 June 1990: how backgrounds were chosen on the IRIS window system (nycbug archive, 1990-June)" },
+        { url: "https://forums.irixnet.org/thread-3880.html", label: "IRIXNet thread, March 2023, where night and twilight resurfaced" }
+      ],
       status: "exhibit" },
 
     { id: "webfly", title: "Performer Town", subtitle: "perfly over an OpenSceneGraph Performer",
