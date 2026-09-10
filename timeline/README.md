@@ -1,12 +1,12 @@
 # Timeline
 
-[sgi-demos.org/timeline/](https://sgi-demos.org/timeline/): every demo on exhibit placed against the SGI machines, operating systems, and graphics libraries it was written for, from flight in 1983 to the last IRIX in 2006 and the demos' return.
+[sgi-demos.org/timeline/](https://sgi-demos.org/timeline/): every demo on exhibit placed against the SGI machines, operating systems, and graphics libraries it was written for, from flight on the IRIS 1400 to the last IRIX in 2006 and the demos' return.
 
 The page is one HTML file and one data file. `data.js` holds everything the page shows; `index.html` only lays it out. Nothing is fetched at runtime except the thumbnails, so the page works from a local checkout as well as from the site.
 
 ## What the page shows
 
-- **Lifespan chart** at the top: a horizontal overview. Era bands, ticks for OS releases, toolboxes, and hardware, then one row per demo with a bar from the first SGI channel that carried it to the last, a diamond at the year it was written, a dotted lead between the two, and dots for later revivals. Every bar and tick is a link into the vertical timeline. A lighter bar means the end date is an inference.
+- **Lifespan chart** at the top: a horizontal overview. Era bands, ticks for OS releases, toolboxes, and hardware, then one row per demo with a bar from the first SGI channel that carried it to the last, a diamond at the year it was written, and a dotted lead between the two; an arrow at the row's end means the bar runs past 2007. Later republications by others (an emulator, a decompilation, a gist) are listed on the demo's card, not drawn. Years run along the top and bottom. Every bar and tick is a link into the vertical timeline. A lighter bar means the end date is an inference.
 - **Keyword filters**: chips built from the taxonomy in `data.js`, grouped (behaviour, kind, colour, shading, hidden surface, technique, input, API). Selecting several narrows to demos that carry all of them. Non-matching demos fade rather than disappear, so the timeline keeps its shape. The search box matches titles, people, history, and keywords. Filters go into the URL (`?k=interactive,colormap&q=tessman`) so a filtered view can be linked.
 - **Vertical timeline** by era, then by year: era headings carry the system, windowing, CPU, and graphics of the period; each year lists its events (releases, hardware, corporate and cultural milestones, Usenet moments) and the demo cards written that year. A demo card has the thumbnail (click to run), authors with a hover note, the written and last-edited dates with the evidence behind them, the list of SGI channels that shipped it, later revivals, its keywords (click to filter), history paragraphs, and sources.
 
@@ -53,11 +53,16 @@ Each demo page carries a gallery placard, the label beside the exhibit. It lives
 ## Open items
 
 - **Last release per demo.** The weakest column. The project has package listings (`*.idb`) for IRIX 3.3, 4.0.1, and 5.1.1 only in part, and none for 5.2 to 6.5; reading every release's listings will fix the end of each bar. The user has the IDB files for every release and will supply them.
+- **Flight's early years.** The 1983 origin, the Blue Angels, the 1984 SIGGRAPH showing over XNS, dog in 1985, and the 1986 move to UDP are all told by Singhal and Zyda's Networked Virtual Environments (1999), which the project has seen only through Wikipedia; they are left out until the book is read and can be cited to a page. What stands is Tarolli's own 1989 post, the 1984 binary, the 1987 IRIS Universe listing, and Mace's 1988 posts.
 - **Electropaint 1994.** The OpenGL rewrite's year and first IRIX release are not yet documented by a primary source.
 - **Twilight's channel.** The 1991 to 1992 SGI copyright and permissive notice suggest an official sample (4Dgifts or a backgrounds package), but no posting or package has been found.
 - **Ideas' author.** The only attribution is Thant Tessman's 2003 demoparty biography.
 - **Bounce's ancestry.** GL2 3.7's gifts.gl2 has a `bounce.c`; whether the 4D demo descends from it is unchecked.
 - **Corrections owed to sgi-demos READMEs and COPYRIGHT.md**, found while researching this page: arena's author is Rob Mace (comp.sys.sgi, 6 December 1988); GL2-W3.6 is a 1987 release whose surviving tape was cut 10 May 1989, not a May 1989 release; ElectroPortis dates from May 2014, not 2018; insect was offered as source in the spring 1987 IRIS Universe; gview was never on the demo tape and is first listed in IRIX 3.2.
+
+## Machine photographs
+
+`media/machines/` holds a photograph of each machine the page can show, all from Wikimedia Commons at 480 pixels, with `credits.md` listing the Commons file, photographer, and licence for each and `credits.json` feeding the `photos` block in `data.js`. An era or event names its picture with a `photo` key; the page shows the credit on hover and links the picture to its Commons page. No free photograph was found for the IRIS 1000 to 3000, the PowerSeries, or the Crimson; those are listed as wanted in credits.md.
 
 ## Regenerating thumbnails
 

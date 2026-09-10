@@ -41,6 +41,12 @@
         a:hover { color: var(--link-hover); text-decoration: underline; }
         .page { max-width: 1240px; margin: 0 auto; }
 
+        .wip {
+            margin: 0 0 1.5rem; padding: .8rem 1.2rem; border-radius: 8px;
+            background: var(--accent); color: #1a2a4a; font-size: 1.05rem; font-weight: 600; text-align: center;
+        }
+        .wip small { display: block; font-weight: 400; font-size: .9rem; margin-top: .15rem; }
+        .wip a { color: #1a2a4a; text-decoration: underline; }
         header { margin-bottom: 1.25rem; }
         h1 { margin: 0 0 .5rem; font-size: 1.8rem; font-weight: 600; letter-spacing: -.01em; }
         header p { margin: 0 0 .4rem; color: var(--muted); max-width: 70ch; }
@@ -48,12 +54,14 @@
         nav.top a { margin-right: 1rem; }
 
         /* ---- overview chart ------------------------------------------------ */
+        /* the chart breaks out of the page column so a wide screen shows all of it without scrolling */
         .overview { margin: 1.5rem 0 2rem; border: 1px solid var(--line); border-radius: 8px; background: var(--card); }
+        @media (min-width: 1300px) { .overview { width: calc(100vw - 3rem); margin-left: calc(50% - 50vw + 1.5rem); } }
         .overview-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: .8rem 1rem .2rem; }
         .overview-head h2 { margin: 0; font-size: 1rem; font-weight: 600; }
         .overview-head span { color: var(--muted); font-size: .85rem; }
         .chart-scroll { overflow-x: auto; padding: 0 .5rem .6rem; }
-        svg.chart { display: block; min-width: 900px; width: 100%; font-family: inherit; }
+        svg.chart { display: block; min-width: 1500px; width: 100%; font-family: inherit; }   /* wide enough for the release and hardware labels; the box scrolls sideways on narrower screens */
         svg.chart text { fill: var(--muted); font-size: 11px; }
         svg.chart .era-band rect { opacity: .85; }
         svg.chart .era-band text { fill: #fff; font-size: 11px; font-weight: 600; }
@@ -65,7 +73,6 @@
         svg.chart .bar rect.span.uncertain { opacity: .35; }
         svg.chart .bar line.lead { stroke: var(--accent); stroke-width: 1; stroke-dasharray: 2 3; }
         svg.chart .bar .written { fill: var(--accent); }
-        svg.chart .bar .revived { fill: var(--k-after); }
         svg.chart .bar text.name { fill: var(--text); font-size: 12px; }
         svg.chart .bar:hover rect.span { opacity: 1; }
         svg.chart .bar.dim { opacity: .22; }
@@ -100,16 +107,24 @@
         /* ---- timeline ------------------------------------------------------ */
         .era { margin: 2.5rem 0 1rem; }
         .era-head {
-            display: grid; grid-template-columns: 1fr auto; gap: .5rem 2rem; align-items: baseline;
+            display: flex; gap: 1.5rem; align-items: flex-start;
             padding: 1rem 1.2rem; border-radius: 8px; border-left: 6px solid var(--era-c, var(--line));
             background: linear-gradient(90deg, var(--era-c, var(--card)) 0%, var(--card) 60%);
         }
+        .era-text { flex: 1; display: grid; grid-template-columns: 1fr auto; gap: .5rem 2rem; align-items: baseline; }
         .era-head h2 { margin: 0; font-size: 1.35rem; font-weight: 600; }
         .era-head .years { color: var(--muted); font-size: 1rem; white-space: nowrap; }
         .era-head p { grid-column: 1 / -1; margin: .2rem 0 0; color: var(--muted); max-width: 90ch; }
         .era-head dl { grid-column: 1 / -1; display: grid; grid-template-columns: max-content 1fr; gap: .1rem 1rem; margin: .5rem 0 0; font-size: .85rem; }
         .era-head dt { color: var(--dim); }
         .era-head dd { margin: 0; color: var(--muted); }
+        .photo { display: block; }
+        .photo img { display: block; border-radius: 4px; border: 1px solid var(--line); background: #132239; }
+        .era-head .photo img { width: 180px; max-height: 180px; object-fit: cover; }
+        .event .photo { float: right; margin: 0 0 .4rem 1rem; }
+        .event .photo img { width: 120px; max-height: 120px; object-fit: cover; }
+        .event.has-photo { min-height: 120px; }
+        @media (max-width: 760px) { .era-head { flex-direction: column; } .era-head .photo img { width: 100%; max-height: 200px; } }
 
         .year { display: grid; grid-template-columns: 90px 1fr; }
         .year-label { position: sticky; top: 0; align-self: start; padding: .9rem 0 .5rem; font-size: 1.05rem; font-weight: 600; color: var(--muted); background: var(--bg); z-index: 1; }
@@ -183,21 +198,22 @@
             .demo { grid-template-columns: 1fr; }
             .demo::before { left: calc(-1rem - 8px - 1px); }
             .event::before { left: calc(-1rem - 6px); }
-            .era-head { grid-template-columns: 1fr; }
+            .era-text { grid-template-columns: 1fr; }
         }
         @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .demo { transition: none; } }
     </style>
 </head>
 <body>
 <div class="page">
+    <div class="wip" role="note">Work in progress: this timeline has inaccuracies<small>Dates and attributions are still being checked against the sources; corrections are welcome as <a href="https://github.com/sgi-demos/sgi-demos.github.io/issues">issues</a>.</small></div>
     <header>
         <h1>SGI demos: a timeline</h1>
-        <p>Every demo on exhibit placed against the machines, the operating systems, and the graphics libraries it was written for, from Gary Tarolli's 1983 flight to the last IRIX in 2006 and the demos' return. Click a bar in the chart or a thumbnail below to run a demo; pick keywords to see which demos share a technique.</p>
+        <p>Every demo on exhibit placed against the machines, the operating systems, and the graphics libraries it was written for, from Gary Tarolli's flight on the IRIS 1400 to the last IRIX in 2006 and the demos' return. Click a bar in the chart or a thumbnail below to run a demo; pick keywords to see which demos share a technique.</p>
         <nav class="top"><a href="../browse/">browse</a><a href="../">Buttonfly</a><a href="https://github.com/sgi-demos/sgi-demos#readme">README</a><a href="https://github.com/sgi-demos/sgi-demos/blob/main/docs/COPYRIGHT.md">provenance</a><a href="https://github.com/sgi-demos/sgi-demos.github.io/tree/main/timeline">this page's data</a></nav>
     </header>
 
     <section class="overview" aria-label="Overview chart">
-        <div class="overview-head"><h2>Lifespans</h2><span>bar: shipped by SGI &middot; diamond: written &middot; dot: revived later</span></div>
+        <div class="overview-head"><h2>Lifespans</h2><span>diamond: written &middot; bar: shipped</span></div>
         <div class="chart-scroll"><svg class="chart" id="chart" role="img" aria-label="Demo lifespans against SGI eras"></svg></div>
         <div class="legend" id="legend"></div>
     </section>
@@ -217,7 +233,7 @@
         <h2>How to read this</h2>
         <p>A demo's card sits at the year it was written. Its bar in the chart runs from the first SGI channel that carried it (a demo tape, an IRIX release, a Developer Toolbox) to the last one the project has evidence for; a lighter bar means the end is an inference. Dates come from file timestamps on the archived tapes, author lines in the source, comp.sys.sgi posts, SGI's release notes, and IRIS Universe; each card lists its sources. Where a date is inferred the note says so.</p>
         <p>The IRIX release contents will firm up as the project reads each release's package listings; the last release to carry each demo is the least certain column here.</p>
-        <p>Data and page: <a href="https://github.com/sgi-demos/sgi-demos.github.io/tree/main/timeline">sgi-demos.github.io/timeline</a>. Thumbnails and the demos themselves: <a href="https://github.com/sgi-demos/sgi-demos">sgi-demos</a>.</p>
+        <p>Machine photographs are from Wikimedia Commons under the licences listed in <a href="https://github.com/sgi-demos/sgi-demos.github.io/blob/main/timeline/media/machines/credits.md">credits.md</a>; hover a picture for its credit. Data and page: <a href="https://github.com/sgi-demos/sgi-demos.github.io/tree/main/timeline">sgi-demos.github.io/timeline</a>. Thumbnails and the demos themselves: <a href="https://github.com/sgi-demos/sgi-demos">sgi-demos</a>.</p>
     </footer>
 </div>
 
@@ -258,12 +274,18 @@
     }
     const demoById = {}; T.demos.forEach(d => { demoById[d.id] = d; });
     const eraColor = i => `var(--era-${i % 8})`;
+    // a machine photograph with its Commons credit on hover (T.photos, media/machines/credits.md)
+    function photoHtml(key, alt) {
+        const ph = T.photos && T.photos[key]; if (!ph) return "";
+        const title = `${alt}. Photo: ${ph.credit}, ${ph.license}, Wikimedia Commons`;
+        return `<a class="photo" href="${esc(ph.url)}" title="${esc(title)}"><img src="${esc(ph.file)}" alt="${esc(alt)}" loading="lazy"></a>`;
+    }
 
     // ---- overview chart ----------------------------------------------------------
     function drawChart(activeIds) {
         const svg = document.getElementById("chart");
-        const width = Math.max(900, svg.parentElement.clientWidth - 16);
-        const left = 168, right = 16, top = 14;
+        const width = Math.max(1500, svg.parentElement.clientWidth - 16);
+        const left = 168, right = 16, top = 30;   // room for the year labels above the era band
         const Y0 = 1983, Y1 = 2007;
         const x = y => left + (y - Y0) / (Y1 - Y0) * (width - left - right);
         const rowH = 20, eraH = 22, hwH = 40, osH = 40;
@@ -275,7 +297,7 @@
         // year grid
         for (let y = Y0; y <= Y1; y++) {
             out.push(`<line class="year-line ${y % 5 === 0 ? "decade" : ""}" x1="${x(y)}" x2="${x(y)}" y1="${top}" y2="${height - 22}"/>`);
-            if (y % 2 === 1 || y === Y0) out.push(`<text x="${x(y)}" y="${height - 8}" text-anchor="middle">${y}</text>`);
+            if (y % 2 === 1 || y === Y0) { out.push(`<text x="${x(y)}" y="${height - 8}" text-anchor="middle">${y}</text>`); out.push(`<text x="${x(y)}" y="${top - 8}" text-anchor="middle">${y}</text>`); }
         }
         // era bands
         T.eras.forEach((e, i) => {
@@ -317,8 +339,7 @@
                 g += `<rect class="span${sp.uncertain ? " uncertain" : ""}" x="${x(a)}" y="${y - 5}" width="${Math.max(3, x(bb) - x(a))}" height="10"><title>${esc(d.title)}: ${esc(sp.first.on)} (${fmt(sp.first.date)}) to ${esc(sp.last.on)} (${fmt(sp.last.date)})</title></rect>`;
             }
             g += `<path class="written" d="M ${x(Math.min(w, Y1))} ${y - 6} l 6 6 l -6 6 l -6 -6 z"><title>written ${fmt(d.written.date)}</title></path>`;
-            (d.revived || []).forEach(r => { const ry = toYear(r.date); if (ry <= Y1) g += `<circle class="revived" cx="${x(ry)}" cy="${y}" r="3.5"><title>${esc(r.on)}, ${fmt(r.date)}</title></circle>`; });
-            if ((d.revived || []).some(r => toYear(r.date) > Y1) || (sp && toYear(sp.last.date) > Y1)) g += `<text x="${x(Y1) + 3}" y="${y + 4}" fill="var(--k-after)">&rarr;</text>`;
+            if (sp && toYear(sp.last.date) > Y1) g += `<text x="${x(Y1) + 3}" y="${y + 4}" fill="var(--k-after)">&rarr;</text>`;
             g += `</a></g>`;
             out.push(g);
             y += rowH;
@@ -371,7 +392,7 @@
     function eventHtml(e) {
         const also = e.also && e.also.length ? `<details><summary>${e.also.length} more demos in this release</summary><span class="also">${e.also.map(esc).join(", ")}</span></details>` : "";
         const src = e.sources && e.sources.length ? `<div class="src">${e.sources.map(s => `<a href="${esc(srcUrl(s))}">${esc(srcLabel(s))}</a>`).join("")}</div>` : "";
-        return `<div class="event kind-${e.kind}" id="ev-${e.id}"><b>${esc(e.title)}</b><span class="date">${fmt(e.date)}</span>${e.text ? ` &mdash; ${esc(e.text)}` : ""}${also}${src}</div>`;
+        return `<div class="event kind-${e.kind}${e.photo ? " has-photo" : ""}" id="ev-${e.id}">${e.photo ? photoHtml(e.photo, e.title) : ""}<b>${esc(e.title)}</b><span class="date">${fmt(e.date)}</span>${e.text ? ` &mdash; ${esc(e.text)}` : ""}${also}${src}</div>`;
     }
     function revivedHtml(d, r) {
         return `<div class="event kind-revived"><b><a href="#demo-${d.id}">${esc(d.title)}</a> revived</b><span class="date">${fmt(r.date)}</span> &mdash; ${esc(r.on)}: ${esc(r.how)}</div>`;
@@ -400,7 +421,7 @@
             <div class="thumb-col">${thumbEl}<div class="links">${links}</div></div>
             <div class="body">
                 <h3>${esc(d.title)}${tag}</h3>
-                <div class="meta"><span class="who">${who}</span> &middot; written ${wn}${ed}</div>
+                <div class="meta"><span class="who">${who}</span> &middot; ${wn}${ed}</div>
                 <p class="summary">${esc(d.summary)}</p>
                 ${shipped}${revived}${chips}
                 <div class="history">${hist}</div>
@@ -423,9 +444,9 @@
         });
         let html = "";
         eras.forEach(e => {
-            html += `<section class="era" id="era-${e.id}" style="--era-c:${eraColor(e.i)}"><div class="era-head"><h2>${esc(e.name)}</h2><span class="years">${fmtShort(e.start)} to ${e.id === "after" ? "today" : fmtShort(e.end)}</span><p>${esc(e.blurb)}</p>`;
+            html += `<section class="era" id="era-${e.id}" style="--era-c:${eraColor(e.i)}"><div class="era-head"><div class="era-text"><h2>${esc(e.name)}</h2><span class="years">${fmtShort(e.start)} to ${e.id === "after" ? "today" : fmtShort(e.end)}</span><p>${esc(e.blurb)}</p>`;
             if (e.os) html += `<dl><dt>system</dt><dd>${esc(e.os)}</dd><dt>windows</dt><dd>${esc(e.windowing)}</dd><dt>cpu</dt><dd>${esc(e.cpu)}</dd><dt>graphics</dt><dd>${esc(e.gfx)}</dd></dl>`;
-            html += `</div>`;
+            html += `</div>${e.photo ? photoHtml(e.photo, e.name) : ""}</div>`;
             let lastYear = null;
             e.items.forEach(it => {
                 const y = year(it.date);
