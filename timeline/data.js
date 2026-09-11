@@ -550,7 +550,7 @@ window.TIMELINE = {
       ],
       status: "exhibit" },
 
-    { id: "ep-1994-ogl-decomp", title: "Electropaint 1994", subtitle: "the OpenGL screensaver, decompiled",
+    { id: "ep-1994", title: "Electropaint 1994", subtitle: "the OpenGL screensaver, decompiled",
       authors: ["tristram"],
       written: { date: "1994", note: "OpenGL rewrite for IRIX; the year is inferred from the binary's era and is not yet documented by a primary source" },
       shipped: [
@@ -562,14 +562,14 @@ window.TIMELINE = {
       keywords: ["animated", "attract", "generative", "screensaver", "rgb", "flat", "wireframe", "smear", "keyboard", "opengl"],
       summary: "The Electropaint that ran on every idle IRIX screen: the famous default script with smooth HLS colour, recovered by decompiling the MIPS binary.",
       history: [
-        "Tristram rewrote Electropaint for OpenGL as the IRIX screensaver, and it wasn't quite the same afterwards: the rewrite lost the four-fold mirrors and shipped with an inverted 60-degree camera [4]. It is the version everyone remembers from Indy and O2-era IRIX, and it stayed through 6.5 [2]. Mark Laws (drvink) decompiled the binary in 2014 with a purpose-built MIPS decompiler; Brendan Shanks made the output portable C [1]. The port renders it through an IRIS GL shim, and the M key switches between the shipped 1994 look and the IRIS-faithful one [4].",
-        "Its footprint runs from Andrew Plotkin's StonerView (1998), written from memory and later in xscreensaver [3], through elektropaintjs and macOS wrappers, to the trademark Tristram filed in 1999 [5]. The companion demo, Electropaint 1994 (reversed), is the same program with the decompiler's mangled names replaced by readable ones, byte-identical in output."
+        "Tristram rewrote Electropaint for OpenGL as the IRIX screensaver, and it wasn't quite the same afterwards: the rewrite lost the four-fold mirrors and shipped with an inverted 60-degree camera [4]. It is the version everyone remembers from Indy and O2-era IRIX, and it stayed through 6.5 [2]. Mark Laws (drvink) decompiled the binary in 2014 with a purpose-built MIPS decompiler; Brendan Shanks made the output portable C [1]. The port renders it through an IRIS GL shim; it starts in the IRIS GL look with the mirrors and the intended camera, and the M key switches to the shipped 1994 look [4].",
+        "Its footprint runs from Andrew Plotkin's StonerView (1998), written from memory and later in xscreensaver [3], through elektropaintjs and macOS wrappers, to the trademark Tristram filed in 1999 [5]. The build on exhibit uses the decompiled source with readable names in place of the decompiler's mangled ones; the verbatim decompilation builds alongside it, byte-identical in output [4]."
       ],
       sources: [
         { url: "https://github.com/drvink/electroportis", label: "ElectroPortis: drvink's decompilation of the IRIX OpenGL ep, first release 5 May 2014" },
         { url: "https://www.jwz.org/blog/2019/06/irix-6-5-screen-savers/", label: "jwz, IRIX 6.5 screen savers, June 2019" },
         { url: "https://www.eblong.com/zarf/stonerview.html", label: "Andrew Plotkin, StonerView" },
-        { url: "https://github.com/sgi-demos/sgi-demos/tree/main/demos/ep-1994-ogl-decomp", label: "The ep-1994 README: the rewrite's two accidents and the M key" },
+        { url: "https://github.com/sgi-demos/sgi-demos/tree/main/demos/ep-1994", label: "The ep-1994 README: the rewrite's two accidents and the M key" },
         { url: "https://trademarks.justia.com/756/32/electropaint-75632551.html", label: "ELECTROPAINT trademark, serial 75632551, filed 6 February 1999" }
       ],
       status: "exhibit" },
