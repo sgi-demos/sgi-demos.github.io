@@ -1,6 +1,6 @@
 # Machine photographs
 
-Photographs used on the timeline page, all from Wikimedia Commons under the licence shown; each file is the 640-pixel rendition Commons serves. Credit and licence are also shown on the page when hovering a picture.
+Photographs used on the timeline page, all from Wikimedia Commons under the licence shown, scaled to at most 480 pixels wide. Credit and licence are also shown on the page when hovering a picture.
 
 | File | Commons file | Photographer | Licence | Source |
 |---|---|---|---|---|
